@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Print 1 to N in Color Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .box {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Print Numbers in Color Boxes</h2>
+
+  <label>Enter a number (N):</label>
+  <input type="number" id="numberInput" placeholder="Enter N" min="1"><br><br>
+
+  <label>Select box background color:</label>
+  <input type="color" id="bgColorInput" value="#00ccff"><br><br>
+
+  <label>Select text color:</label>
+  <input type="color" id="textColorInput" value="#ffffff"><br><br>
+
+  <button onclick="generateBoxes()">Print</button>
+
+  <div id="boxes"></div>
+
+  <script>
+    function generateBoxes() {
+      const n = parseInt(document.getElementById('numberInput').value);
+      const bgColor = document.getElementById('bgColorInput').value;
+      const textColor = document.getElementById('textColorInput').value;
+      const boxesContainer = document.getElementById('boxes');
+
+      boxesContainer.innerHTML = ''; // Clear previous boxes
+
+      if (isNaN(n) || n < 1) {
+        alert('Please enter a valid number greater than 0');
+        return;
+      }
+
+      for (let i = 1; i <= n; i++) {
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.style.backgroundColor = bgColor;
+        box.style.color = textColor;
+        box.textContent = i;
+        boxesContainer.appendChild(box);
+      }
+    }
+  </script>
+
+</body>
+</html>
